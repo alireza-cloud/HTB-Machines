@@ -42,3 +42,7 @@
   * Service in running on victim machine 127.0.0.1:8080 and can only be accessed via localhost
     * kali-Attacker$ ssh -L 0.0.0.0:9999:127.0.0.1:PORT john@VICTIM-IP
     * kali-Attacker$ curl -I http://127.0.0.1:9999
+   
+#### Exploiting Chrome Debugger:
+  * https://exploit-notes.hdks.org/exploit/linux/privilege-escalation/chrome-remote-debugger-pentesting/
+
