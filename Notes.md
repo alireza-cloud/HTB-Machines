@@ -11,6 +11,7 @@
 
 #### Powershell:
   * ```Get-ChildItem -Path C:\ -Recurse -Filter "user.txt" -ErrorAction SilentlyContinue```
+  * ```Get-Service | Where-Object { $_.Status -eq 'Running' }```
 
 #### System SAM Hive dump:
   * cd c:\
