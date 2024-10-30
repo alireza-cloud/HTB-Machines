@@ -13,6 +13,16 @@
   * ```Get-ChildItem -Path C:\ -Recurse -Filter "user.txt" -ErrorAction SilentlyContinue```
   * ```Get-Service | Where-Object { $_.Status -eq 'Running' }```
 
+#### CMD:
+  * Name and account for all services:
+    ```wmic service get name,startname```
+
+  * started services only:
+    ```wmic service where started=true get  name, startname```
+
+  * services with specific pattern in name:
+    ```wmic service where 'name like "%sql%"' get  name, startname```
+
 #### System SAM Hive dump:
   * cd c:\
   * mkdir Temp
