@@ -113,4 +113,5 @@ Command=ToggleDesktop
     proxychains msfconsole
     search rdp_scanner
     proxychains xfreerdp /v:172.16.5.19 /u:admin /p:pass@123```
- 
+#### Ping Sweep:
+```for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done```
