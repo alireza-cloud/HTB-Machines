@@ -106,6 +106,11 @@ Command=ToggleDesktop
  ```
 ssh -D 9050 alreadyCompromisedMachine@10.129.202.64
 ```
+ #####
+ * Local port forwarding
+```
+ssh -L 7000:127.0.0.1:8080 victim@10.10.11.38
+```
  ##### 
  * edit /etc/proxychains.conf
    ```
