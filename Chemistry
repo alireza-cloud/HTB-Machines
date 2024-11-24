@@ -1,1 +1,11 @@
-
+└─$ nmap -p- --open 10.10.11.38                    
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-11-24 13:16 EST
+Nmap scan report for 10.10.11.38
+Host is up (0.11s latency).
+Not shown: 64912 closed tcp ports (reset), 620 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT     STATE SERVICE
+22/tcp   open  ssh
+5000/tcp open  upnp
+9003/tcp open  unknown
+******************************************************************************************************************************************************************************************************
