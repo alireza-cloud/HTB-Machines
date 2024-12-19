@@ -140,3 +140,6 @@ ssh -L 7000:127.0.0.1:8080 alreadyCompromisedMachine@10.10.11.38
 ```for i in {1..254} ;do (ping -c 1 172.16.5.$i | grep "bytes from" &) ;done```
 
 ```for i in $(seq 1 254); do ping -c 1 -W 1 172.16.5.$i &>/dev/null && echo "172.16.5.$i is reachable"; done | grep "bytes from"```
+#### Windows Ping Sweep:
+```for /L %i in (1,1,254) do @ping -n 1 -w 1000 192.168.0.%i | find "TTL" && echo 192.168.0.%i is reachable```
+
