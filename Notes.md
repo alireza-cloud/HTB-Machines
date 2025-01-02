@@ -228,3 +228,12 @@ for password in passwords:
 ```hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get / -s 81```
 #### Bruteforcing Login Forms:
 ```hydra -L top-usernames-shortlist.txt -P 2023-200_most_used_passwords.txt -f <IP> -s <PORT> http-post-form "/:username=^USER^&password=^PASS^:F=Invalid credentials"```
+
+#### Crawling (web):
+```
+pip3 install scrapy
+wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
+unzip ReconSpider.zip
+python3 ReconSpider.py http://inlanefreight.com
+cat results.json
+```
