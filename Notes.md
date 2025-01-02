@@ -35,6 +35,8 @@
 
 #### Subdomain Enumeration:
   * ```ffuf -u http://permx.htb -H "Host:FUZZ.permx.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -fw 18```
+  * ```gobuster vhost -u http://inlanefreight.htb:59676 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain```
+
 
 #### Directory Enumeration
   * ```gobuster dir -u http://lms.permx.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt```
