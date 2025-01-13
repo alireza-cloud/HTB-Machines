@@ -5,6 +5,7 @@
   * ```netexec smb 10.10.11.35 -u Guest -p '' --rid-brute```
   * ```netexec smb 10.10.11.35 -u username.txt -p 'password123!'```
 #### PSExec:
+   Cross Domain Authentication:
   * ```psexec.py FREIGHTLOGISTICS.LOCAL/sapsso@academy-ea-dc03.inlanefreight.local -target-ip 172.16.5.238```
 
 ### LDAP:
