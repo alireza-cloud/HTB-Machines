@@ -52,6 +52,7 @@ GET Method:
   * Page Fuzzing:
 
     ```ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-small.txt:FUZZ -u http://faculty.academy.htb:54143/FUZZ -recursion -recursion-depth 1 -e .php,.phps,.php7 -fs 287```
+    
  POST Method:
   * Parameter Fuzzing (POST):
 
