@@ -97,5 +97,5 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 ### SQL Injection Fundamentals:
 ---
 #### Skills Assessment :
-:
+```
 ```
