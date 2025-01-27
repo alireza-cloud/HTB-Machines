@@ -83,7 +83,7 @@ GO
 
 
 ```
-### Attacking Web Applications with Ffuf
+### Attacking Web Applications with Ffuf:
 ---
 #### Skills Assessment - Web Fuzzing:
 ```
