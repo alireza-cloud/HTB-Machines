@@ -41,6 +41,18 @@
   * ```ffuf -u http://permx.htb -H "Host:FUZZ.permx.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -fw 18```
   * ```gobuster vhost -u http://inlanefreight.htb:59676 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain```
 
+#### Fuzzing:
+GET Method:
+  * ```ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx```
+
+POST Method:
+  * Subdomain Fuzzing:            ```ffuf -u http://academy.htb:54143 -H "Host:FUZZ.academy.htb:54143" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -fw 423```
+  * Extension Fuzzing:            ```ffuf -w /usr/share/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://faculty.academy.htb:54143/indexFUZZ```
+  * Page Fuzzing:                 ```ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-small.txt:FUZZ -u http://faculty.academy.htb:54143/FUZZ -recursion -recursion-depth 1 -e .php,.phps,.php7 -fs 287```
+  * Parameter Fuzzing (POST):     ```ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://faculty.academy.htb:49893/courses/linux-security.php7 -X POST -d "FUZZ=key" -H "Content-Type: application/x-www-form-urlencoded" -fs 774```
+  * Value Fuzzing (POST):         ```ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt:FUZZ -u http://faculty.academy.htb:49893/courses/linux-security.php7 -X POST -d "username=FUZZ" -H "Content-Type: application/x-www-form-urlencoded" -fs 781```
+     
+
 
 #### Directory Enumeration
   * ```gobuster dir -u http://lms.permx.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt```
