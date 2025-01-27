@@ -92,3 +92,10 @@ Parameter Fuzzing (POST):     ffuf -w /usr/share/seclists/Discovery/Web-Content/
 Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt:FUZZ -u http://faculty.academy.htb:49893/courses/linux-security.php7 -X POST -d "username=FUZZ" -H "Content-Type: application/x-www-form-urlencoded" -fs 781
      
 ```
+
+---
+### SQL Injection Fundamentals:
+---
+#### Skills Assessment :
+:
+```
