@@ -200,6 +200,10 @@ done
 ```
 
 ```
+echo -n -e '\xff\xd8\xff\xe0\x0d\x0a' > image.txt
+```
+
+```
 POST /contact/upload.php HTTP/1.1
 Host: 94.237.54.190:59897
 Content-Length: 234
