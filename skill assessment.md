@@ -342,3 +342,11 @@ OR
 * https://github.com/AlessandroZ/LaZagne/releases/tag/v2.4.6
   
 ```LaZagne.exe all```
+
+---
+### Windows Priv Esc:
+---
+#### Skills Assessment II:
+
+##### get the content of files
+ ```findstr /sin /i "iamtheadministrator" * > C:\users\public\tes.txt 2>C:\users\public\error```
