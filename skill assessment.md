@@ -382,6 +382,12 @@ use post/multi/recon/local_exploit_suggester
 set SESSION <session_id>
 run
 ```
+OR manual check:
+
+```
+reg query HKCU\Software\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKLM\Software\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+```
 
 ##### output:
 ```
@@ -403,4 +409,3 @@ use exploit/windows/local/always_install_elevated
 set SESSION <session_id>
 exploit
 ```
-
