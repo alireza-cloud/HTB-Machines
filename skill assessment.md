@@ -383,6 +383,7 @@ set SESSION <session_id>
 run
 ```
 
+##### output:
 ```
 <SNIP>
 *] Running check method for exploit 41 / 41
