@@ -239,7 +239,7 @@ Accept-Language: en-US,en;q=0.9
 Connection: close
 ```
 ---
-### Windows Linux Esc:
+### Linux Priv Esc:
 ---
 #### Skills Assessment I:
 ##### dont overlook the hidden files:
