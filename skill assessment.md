@@ -239,6 +239,19 @@ Accept-Language: en-US,en;q=0.9
 Connection: close
 ```
 ---
+### Windows Linux Esc:
+---
+#### Skills Assessment I:
+##### dont overlook the hidden files:
+```
+htb-student@nix03:~$ pwd
+/home/htb-student
+htb-student@nix03:~$ cat .config/.flag1.txt 
+LLPE{d0n_ov3rl00k_h1dden_f1les!}
+
+```
+
+---
 ### Windows Priv Esc:
 ---
 #### Skills Assessment I:
