@@ -248,8 +248,40 @@ htb-student@nix03:~$ pwd
 /home/htb-student
 htb-student@nix03:~$ cat .config/.flag1.txt 
 LLPE{d0n_ov3rl00k_h1dden_f1les!}
-
 ```
+##### Check for other users on the host:
+```
+htb-student@nix03:~$ cat /home/barry/.* | grep -i pass
+cat: /home/barry/.: Is a directory
+cat: /home/barry/..: Is a directory
+cat: sshpass -p 'i_l0ve_s3cur1ty!' ssh barry_adm@dmz1.inlanefreight.local
+```
+
+##### Home directory of other user:
+```
+barry@nix03:/home/htb-student$ cat /home/barry/flag2.txt
+LLPE{ch3ck_th0se_cmd_l1nes!}
+```
+##### /var/log directory:
+```
+barry@nix03:/home/htb-student$ cat /var/log/flag3.txt 
+LLPE{h3y_l00k_a_fl@g!}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 ### Windows Priv Esc:
