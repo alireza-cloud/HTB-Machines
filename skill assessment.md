@@ -280,7 +280,12 @@ except:
 - found nagiosadmin credentials "postgres=# CREATE USER nagiosadmin WITH PASSWORD 'oilaKglm7M09@CPL&^lC';" in a project branch
 - logged in monitoring.inlanefreight.local and run commands over nagios: configure -> core config manager -> Commands -> add new
 ```
-
+#### Skills Assessment III:
+##### Manual enumeration revealed MultimasterAPI.dll:
+```
+- the following dll seemed to be interesting: C:\inetpub\wwwroot\bin\MultimasterAPI.dll
+- DLL analysis via dnSpy.exe revealed the credentials
+```
 
 
 
