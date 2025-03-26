@@ -277,7 +277,8 @@ except:
 - found the github site
 - create an account, logged in and discovered some exposed projects/ repositories
 - those repos revealed subdomains monitoring.inlanefreight.local in the repository and http://blog.inlanefreight.local in html source code
-- found credentials  
+- found nagiosadmin credentials "postgres=# CREATE USER nagiosadmin WITH PASSWORD 'oilaKglm7M09@CPL&^lC';" in a project branch
+- logged in monitoring.inlanefreight.local and run commands over nagios: configure -> core config manager -> Commands -> add new
 ```
 
 
