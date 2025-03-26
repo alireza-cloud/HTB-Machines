@@ -243,7 +243,7 @@ Connection: close
 ---
 #### Skills Assessment I:
 
-##### Finding a CGI script:
+##### Finding a CGI script based on the vuln Tomcat version 9.0.0.M1:
 ```
 ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.201.89:8080/cgi/FUZZ.bat
 <SNIP>
@@ -271,10 +271,14 @@ try:
 except:
     print("Some error occured in the script")
 ```
-
-
-
-
+#### Skills Assessment II:
+##### Doing basic manual enumeration:
+```
+- found the github site
+- create an account, logged in and discovered some exposed projects/ repositories
+- those repos revealed subdomains monitoring.inlanefreight.local in the repository and http://blog.inlanefreight.local in html source code
+- found credentials  
+```
 
 
 
